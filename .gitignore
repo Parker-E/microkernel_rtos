@@ -1,0 +1,38 @@
+# Ignore build files
+build/
+
+# ESP-IDF specific
+/sdkconfig
+/sdkconfig.old
+
+# CMake generated files
+CMakeLists.txt.user
+CMakeLists.txt.user.*
+CMakeCache.txt
+cmake_install.cmake
+CMakeFiles/
+CTestTestfile.cmake
+
+# Core dumps, crash logs
+*.core
+
+# Compiled object files
+*.elf
+*.bin
+*.map
+*.o
+*.out
+
+# Logs and temporary files
+*.log
+*.temp
+*.tmp
+
+# IDE specific (e.g., Visual Studio Code)
+.vscode/
+.idea/
+*.swp
+*.bak
+
+# Directory for temporary files and compiled objects
+tmp/
