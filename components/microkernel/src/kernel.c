@@ -9,13 +9,6 @@ task_t tasks[MAX_TASKS];
 int current_task_id;
 
 typedef struct {
-    task_t tasks[MAX_TASKS];
-    int current_task;
-} kernel_t;
-
-kernel_t kernel;
-
-typedef struct {
     uint32_t *stack_pointer;
 } tcb_t;
 
@@ -30,9 +23,12 @@ void kernel_init() {
 void kernel_start() {
     // Run through each task
     while (1) {
-        if (tasks[current_task_id].task_func != NULL) {
+        if (tasks[current_task_id].task_func != NULL && tasks[current_task_id].state == READY) {
+            tasks[current_task_id].state = RUNNING;
             tasks[current_task_id].task_func();
+            tasks[current_task_id].state = READY;
         }
+        __asm__("nop"); // Break for context switch debug
         current_task_id = (current_task_id + 1) % MAX_TASKS;
     }
 }
